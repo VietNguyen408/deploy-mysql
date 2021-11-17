@@ -12,10 +12,9 @@ resource "helm_release" "mysql" {
   name       = "my-mysql-release"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "mysql"
-  namespace = "viet"
+  namespace  = "viet"
 
   values = [
     file("${path.module}/mysql-values.yaml")
   ]
-  
 }
