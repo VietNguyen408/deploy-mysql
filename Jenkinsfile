@@ -43,7 +43,6 @@ pipeline {
             steps {
                 script {
                     sh '''export TF_VAR_access_token=$(cat /opt/ServiceAccount/syndeno/GCP_ACCESS_TOKEN.txt)
-                    terraform force-unlock -force 1642583893766890
                     terraform init -reconfigure -force-copy -backend-config="access_token=$TF_VAR_access_token" || terraform init -migrate-state -force-copy -backend-config="access_token=$TF_VAR_access_token"
                     terraform workspace select ${NAME_TF_WORKSPACE} || terraform workspace new ${NAME_TF_WORKSPACE} #Will execute second command if first fails
                     terraform workspace show
